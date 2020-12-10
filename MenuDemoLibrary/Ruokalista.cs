@@ -7,7 +7,7 @@ namespace MenuDemoLibrary
     public class Ruokalista
     {
         private string _nimi;
-        private List<Kategoria> kategoriat = new List<Kategoria> ();
+        private List<Kategoria> kategoriat = new List<Kategoria>();
         static int ruokalistaidCount = 0;
         private string _kuvaus;
         private int ruokalistaid;
@@ -21,10 +21,10 @@ namespace MenuDemoLibrary
         public string Kuvaus { get => _kuvaus; set => _kuvaus = value; }
         public int RavintolaId { get => _ravintolaId; set => _ravintolaId = value; }
 
-        public Ruokalista (string nimi)
+        public Ruokalista(string nimi)
         {
             this.Nimi = nimi;
-            
+
             ruokalistaidCount++;      // nostetaan idCounttia yhdellä
             this.Ruokalistaid = ruokalistaidCount;              // ja asetetaan se uuden luodun ruokalistan tunnukseksi
             this.Kategoriat = new List<Kategoria>();
@@ -37,13 +37,22 @@ namespace MenuDemoLibrary
             this.Kategoriat.Add(jälkiruoat);
             this.Kategoriat.Add(juomat);
         }
-        public Ruokalista(int id,string nimi,string kuvaus, int ravintolaId)
+        public Ruokalista(int id, string nimi, string kuvaus, int ravintolaId)
         {
             this.Id = id;
             this.Nimi = nimi;
             this.Kuvaus = kuvaus;
             this.RavintolaId = ravintolaId;
-            
+
+        }
+        public Ruokalista(string nimi, string kuvaus, int ravintolaId)
+        {
+            ruokalistaidCount++;      // nostetaan idCounttia yhdellä
+            this.Id = ruokalistaidCount;
+            this.Nimi = nimi;
+            this.Kuvaus = kuvaus;
+            this.RavintolaId = ravintolaId;
+
         }
         public static void tulostaKategorianNimet(Ravintola ravintola, int ruokalistantunnus)
         {
@@ -58,15 +67,17 @@ namespace MenuDemoLibrary
                 }
             }
         }
-        public static void tulostaRuokalistanTiedot(Ravintola ravintola, int ruokalistaId)
+        public static void tulostaRuokalistanTiedot(Ruokalista ruokalista)
         {
 
-               Console.WriteLine($"  {ravintola.Ruokalistat[ruokalistaId-1].Id} ,  {ravintola.Ruokalistat[ruokalistaId - 1].Nimi} ,  {ravintola.Ruokalistat[ruokalistaId - 1].Kuvaus}, RavintolaId: {ravintola.Ruokalistat[ruokalistaId - 1].RavintolaId} ");
-                    
-                }
-            }
+            Console.WriteLine($"  {ruokalista.Id} ,  {ruokalista.Nimi} ,  {ruokalista.Kuvaus}, RavintolaId: {ruokalista.RavintolaId} ");
+
+
+
         }
-    
+    }
+}
+
     
     
 

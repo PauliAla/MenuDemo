@@ -1,0 +1,23 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       [dbo].[FK_Annokset_AnnosTyyppi] (Foreign Key)
+       [dbo].[FK_Kategoriat_ToTable] (Foreign Key)
+       [dbo].[FK_Ruokalistat_Ravintolalista] (Foreign Key)
+       [dbo].[FK_Annokset_Allergeenit] (Foreign Key)
+       [dbo].[FK_Annokset_Kategoriat] (Foreign Key)
+     Create
+       [dbo].[FK_Annokset_AnnosTyyppi] (Foreign Key)
+       [dbo].[FK_Kategoriat_ToTable] (Foreign Key)
+       [dbo].[FK_Ruokalistat_Ravintolalista] (Foreign Key)
+
+** Supporting actions

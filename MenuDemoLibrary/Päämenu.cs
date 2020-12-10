@@ -63,7 +63,8 @@ namespace MenuDemoLibrary
                 Console.WriteLine("1. Syötä ravintolan tiedot");
                 Console.WriteLine("2. Katsele listaa ravintoloista");
                 Console.WriteLine("3. Poista ravintolan tiedot");
-                Console.WriteLine("4. Paluu päävalikkoon");
+                Console.WriteLine("4. Näytä ravintolan kaikki tiedot (Nimi, ruokalistat, kategoriat ja annokset)");
+                Console.WriteLine("5. Paluu päävalikkoon");
 
                 selection = Console.ReadKey().Key;
 
@@ -79,13 +80,16 @@ namespace MenuDemoLibrary
                         MenuDemoLibrary.KaikenDatanKäsittelijä.poistaRavintolanTiedot();
                         break;
                     case ConsoleKey.D4:
+                        MenuDemoLibrary.KaikenDatanKäsittelijä.näytäRavintolanTiedot();
+                        break;
+                    case ConsoleKey.D5:
                         MenuDemoLibrary.Päämenu.Valinnat();
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nValitse numero 1-4.");
+                        Console.WriteLine("\nValitse numero 1-5.");
                         KaikenDatanKäsittelijä.odotaNäppäimenPainallusta();
                         break;
                 }
@@ -101,10 +105,9 @@ namespace MenuDemoLibrary
                 Console.WriteLine("Ruokalistat:");
                 Console.WriteLine("-----------");
                 Console.WriteLine("1. Näytä ruokalistojen tiedot");
-                Console.WriteLine("2. Lisää uusi ruokalista");
+                Console.WriteLine("2. Lisää uusi ruokalista (Ja sen kategoriat automaattisesti)");
                 Console.WriteLine("3. Poista ruokalista");
-                Console.WriteLine("4. Muokkaa ruokalistan nimeä");
-                Console.WriteLine("5. Paluu päävalikkoon");
+                Console.WriteLine("4. Paluu päävalikkoon");
 
                 selection = Console.ReadKey().Key;
 
@@ -120,16 +123,13 @@ namespace MenuDemoLibrary
                         MenuDemoLibrary.KaikenDatanKäsittelijä.poistaRuokalista();
                         break;
                     case ConsoleKey.D4:
-                        MenuDemoLibrary.KaikenDatanKäsittelijä.muokkaaRavintolanRuokalistaa();
-                        break;
-                    case ConsoleKey.D5:
                         MenuDemoLibrary.Päämenu.Valinnat();
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nValitse numero 1-5.");
+                        Console.WriteLine("\nValitse numero 1-4.");
                         KaikenDatanKäsittelijä.odotaNäppäimenPainallusta();
                         break;
                 }
@@ -147,8 +147,7 @@ namespace MenuDemoLibrary
                 Console.WriteLine("1. Näytä kategorian sisältö");
                 Console.WriteLine("2. Muokkaa kategorian nimeä");
                 Console.WriteLine("3. Poista kategoria ruokalistasta");
-                Console.WriteLine("4. Luo uusi kategoria");
-                Console.WriteLine("5. Paluu päävalikkoon");
+                Console.WriteLine("4. Paluu päävalikkoon");
 
                 selection = Console.ReadKey().Key;
 
@@ -164,16 +163,13 @@ namespace MenuDemoLibrary
                         MenuDemoLibrary.KaikenDatanKäsittelijä.poistaKategoriaRuokalistasta();
                         break;
                     case ConsoleKey.D4:
-                        MenuDemoLibrary.KaikenDatanKäsittelijä.luoUusiKategoria();
-                        break;
-                    case ConsoleKey.D5:
                         MenuDemoLibrary.Päämenu.Valinnat();
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nValitse numero 1-5.");
+                        Console.WriteLine("\nValitse numero 1-4.");
                         KaikenDatanKäsittelijä.odotaNäppäimenPainallusta();
                         break;
                 }
@@ -188,12 +184,12 @@ namespace MenuDemoLibrary
                 Console.Clear();
                 Console.WriteLine("Annokset:");
                 Console.WriteLine("---------");
-                Console.WriteLine("1. Luo annos ja lisää se datamanageriin");
-                Console.WriteLine("2. Lisää annos datamanagerista haluamaasi ravintolan ruokalistan kategoriaan");
-                Console.WriteLine("3. Tarkastele datamanagerin sisältöä");
-                Console.WriteLine("4. Poista annos datamanagerista");
-                Console.WriteLine("5. Muokkaa datamanagerissa olevaa annosta");
-                Console.WriteLine("6. Paluu päävalikkoon");
+                Console.WriteLine("1. Luo annos ja lisää se tietokantaan");
+                Console.WriteLine("2. Lisää annos haluamaasi ravintolan ruokalistan kategoriaan tietokannassa");
+                Console.WriteLine("3. Tarkastele tietokannan annoksien sisältöä");
+                Console.WriteLine("4. Poista annos tietokannasta");
+                //Console.WriteLine("5. Muokkaa datamanagerissa olevaa annosta");
+                Console.WriteLine("5. Paluu päävalikkoon");
 
 
                 selection = Console.ReadKey().Key;
@@ -213,17 +209,17 @@ namespace MenuDemoLibrary
                     case ConsoleKey.D4:
                         MenuDemoLibrary.KaikenDatanKäsittelijä.poistaAnnosDatamanagerista();
                         break;
+                   // case ConsoleKey.D5:
+                   //     MenuDemoLibrary.KaikenDatanKäsittelijä.muokkaaDatamanagerinAnnosta();
+                   //     break;
                     case ConsoleKey.D5:
-                        MenuDemoLibrary.KaikenDatanKäsittelijä.muokkaaDatamanagerinAnnosta();
-                        break;
-                    case ConsoleKey.D6:
                         MenuDemoLibrary.Päämenu.Valinnat();
                         break;
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nValitse numero 1-6.");
+                        Console.WriteLine("\nValitse numero 1-5.");
                         KaikenDatanKäsittelijä.odotaNäppäimenPainallusta();
                         break;
                 }

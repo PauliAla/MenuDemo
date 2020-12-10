@@ -50,11 +50,100 @@ namespace MenuDemoLibrary
         public static void lisääRuokalistaTietokantaan(Ravintola ravintola, Ruokalista ruokalista)
         {
             string str = DataAccess.CnnVal(DataAccess.currentDBName);
-            int ruokalistaId;
+            
             using (IDbConnection connection = new SqlConnection(str))
             {
-                ruokalistaId = connection.QuerySingle<int>("INSERT Ruokalistat (Id, Nimi, Kuvaus, RavintolaId) OUTPUT inserted.id " +
-                    "VALUES (@Id,@Nimi,@Kuvaus,@RavintolaId)", new { Id = ruokalista.Id, Nimi = ruokalista.Nimi, Kuvaus=ruokalista.Kuvaus, RavintolaId = ravintola.Id});
+                var lista1 = connection.Query<int>("SELECT Id FROM Ruokalistat").ToList();
+                int suurinId = 0;
+                foreach(int Id in lista1)
+                {
+                    if (Id>suurinId)
+                    {
+                        suurinId = Id;
+                    }
+                }
+                connection.Execute("INSERT Ruokalistat (Id, Nimi, Kuvaus, RavintolaId) " +
+                    "VALUES (@Id,@Nimi,@Kuvaus,@RavintolaId)", new { Id = (suurinId+1), Nimi = ruokalista.Nimi, Kuvaus=ruokalista.Kuvaus, RavintolaId = ravintola.Id});
+                var lista = connection.Query<int>("SELECT Id FROM Ravintolaruokalistat").ToList();
+                
+                int suurinId2 = 0;
+                foreach (int Id in lista)
+                {
+                    if (Id > suurinId2)
+                    {
+                        suurinId2 = Id;
+                    }
+                }
+                connection.Execute("INSERT RavintolaRuokalistat (Id, RavintolaId, RuokalistaId)" +
+                   "VALUES (@Id,@RavintolaId,@RuokalistaId)", new { Id=(suurinId2+1),RavintolaId = ravintola.Id, RuokalistaId = ruokalista.Id });
+        
+            }
+
+        }
+
+        public static void lisääLuotuAnnosTietokantaan (Annos annos)
+        {
+            string str = DataAccess.CnnVal(DataAccess.currentDBName);
+            using (IDbConnection connection = new SqlConnection(str))
+            {
+                var lista1 = connection.Query<int>("SELECT Id FROM Annokset").ToList();
+                int suurinId = 0;
+                foreach (int Id in lista1)
+                {
+                    if (Id > suurinId)
+                    {
+                        suurinId = Id;
+                    }
+                }
+                int annostyyppi = 0;
+                Type type = annos.GetType();
+                if (type == typeof(Juoma))
+                {
+                    annostyyppi = 2;
+                    var lista3 = connection.Query<int>("SELECT Id FROM Annokset").ToList();
+                    int suurinId3 = 0;
+                    foreach (int Id in lista3)
+                    {
+                        if (Id > suurinId3)
+                        {
+                            suurinId3 = Id;
+                        }
+                    }
+                    connection.Execute("INSERT JuomaTyyppiAnnokset (Id, Alkoholiton, AnnosId ) " +
+                   "VALUES (@Id, @Alkoholiton, @AnnosId )", new { Id = (suurinId3 + 1),  Alkoholiton= annos.Alkoholiton, AnnosId = (suurinId+1) });
+                }   else
+                {
+                    annostyyppi = 1;
+                }
+                    connection.Execute("set IDENTITY_INSERT Annokset ON INSERT Annokset (Id, Nimi, Kuvaus, Hinta, KategoriaId, AllergeeniId, AnnostyyppiId ) " +
+                    "VALUES (@Id,@Nimi,@Kuvaus,@Hinta, @KategoriaId, @AllergeeniId, @AnnostyyppiId )", new { Id = (suurinId + 1), Nimi = annos.Nimi, Kuvaus = annos.Kuvaus, Hinta = annos.Hinta, KategoriaId=0, AllergeeniId=0, AnnostyyppiId=annostyyppi });
+                var lista2 = connection.Query<int>("SELECT Id FROM AllergeeniAnnokset").ToList();
+                int suurinId2 = 0;
+                foreach (int Id in lista2)
+                {
+                    if (Id > suurinId2)
+                    {
+                        suurinId2 = Id;
+                    }
+                }
+
+                if (annos.Allergeenityypit.Contains(Allergeenit.AllergeeniTyyppi.Laktoosi))
+                {
+                    connection.Execute("INSERT AllergeeniAnnokset (Id,  AllergeeniId, AnnosId ) " +
+                    "VALUES (@Id, @AllergeeniId, @AnnosId )", new { Id = (suurinId2 + 1), AllergeeniId = 1, AnnosId = (suurinId + 1) });
+                    suurinId2++;
+                }
+                if (annos.Allergeenityypit.Contains(Allergeenit.AllergeeniTyyppi.Pähkinä))
+                {
+                    connection.Execute("INSERT AllergeeniAnnokset (Id,  AllergeeniId, AnnosId ) " +
+                    "VALUES (@Id, @AllergeeniId, @AnnosId )", new { Id = (suurinId2 + 1), AllergeeniId = 2, AnnosId = (suurinId + 1) });
+                    suurinId2++;
+                }
+                if (annos.Allergeenityypit.Contains(Allergeenit.AllergeeniTyyppi.Gluteeni))
+                {
+                    connection.Execute("INSERT AllergeeniAnnokset (Id,  AllergeeniId, AnnosId ) " +
+                    "VALUES (@Id, @AllergeeniId, @AnnosId )", new { Id = (suurinId2 + 1), AllergeeniId = 3, AnnosId = (suurinId + 1) });
+                }
             }
 
         }
@@ -68,6 +157,15 @@ namespace MenuDemoLibrary
                     "VALUES (@KategoriaId,@AnnosId)", new { KategoriaId = kategoriaId, AnnosId = annosId });
             }
 
+        }
+        public static void poistaAnnosTietokannasta (int annosId)
+        {
+            string str = DataAccess.CnnVal(DataAccess.currentDBName);
+            using (IDbConnection connection = new SqlConnection(str))
+            {
+                connection.Execute("DELETE FROM Annokset WHERE Id=@Id", new { id = annosId });
+                connection.Execute("DELETE FROM KategoriaAnnokset WHERE AnnosId=@Id", new { Id = annosId });
+            }
         }
 
         public static void poistaRavintolaTietokannasta(int ravintolaId)
@@ -194,6 +292,7 @@ namespace MenuDemoLibrary
                 return toReturn;
             }
         }
+
         public static List <Annos> HaeKaikkiAnnoksetKategoriasta (int kategoriaId)
         {
             List <int> idt = haeAnnostenTunnuksetKategoriasta(kategoriaId);
@@ -229,6 +328,42 @@ namespace MenuDemoLibrary
                 var toReturn = connection.Query<Annos>("SELECT * FROM Annokset").ToList();
                 return toReturn;
             }
+        }
+        public static void näytäRavintolanTiedot ()
+        {
+
+            List <Ravintola> ravintolat = haekaikkiRavintolatTietokannasta();
+            katseleListaaRavintoloista2();
+            Console.WriteLine("Valitse ravintolan Id jonka kaikki tiedot haluat nähdä:");
+            int valinta = int.Parse(Console.ReadLine());
+            foreach (Ravintola ravintola in ravintolat)
+            {
+                if (ravintola.Id==valinta)
+                {
+                    Ravintola haettu = haeKaikkiRavintolanDataIdllä(valinta);
+                    foreach (Ruokalista ruokalista in haettu.Ruokalistat)
+                    {
+                        Console.WriteLine("\nRuokalista: ");
+                        Console.WriteLine("-----------");
+                        Console.WriteLine($"{ruokalista.Nimi}, {ruokalista.Kuvaus}");
+                        foreach (Kategoria kategoria in ruokalista.Kategoriat)
+                        {
+                            Console.WriteLine("\nKategoria:");
+                            Console.WriteLine("----------");
+                            Console.WriteLine($"{kategoria.Nimi}, {kategoria.Kuvaus}, {kategoria.Id}");
+                            foreach (Annos etsitty in kategoria.Annoslista)
+                            {
+                                Console.WriteLine("\nAnnos:");
+                                Console.WriteLine("------");
+                                Annos.tulostaAnnoksenTiedot(etsitty);
+                            }
+                        }
+                    }
+                }
+            }
+            odotaNäppäimenPainallusta();
+
+
         }
         public static void katseleListaaRavintoloista()
         {
@@ -285,7 +420,7 @@ namespace MenuDemoLibrary
                     ravintola.Ruokalistat = haeRuokalistatRavintolanIdllä(numero);
                     foreach (Ruokalista ruokalista in ravintola.Ruokalistat)
                     {
-                        Ruokalista.tulostaRuokalistanTiedot(ravintola, ruokalista.Id);
+                        Ruokalista.tulostaRuokalistanTiedot(ruokalista);
                    }
                 }
             }
@@ -314,9 +449,18 @@ namespace MenuDemoLibrary
                     string ruokalistannimi = Console.ReadLine();
                     Console.WriteLine("Anna ruokalistan kuvaus");
                     string ruokalistankuvaus = Console.ReadLine();
-                    List<Ruokalista> ruokalistat = haeRuokalistatRavintolanIdllä(numero);
-                    int Id = (ruokalistat.Count) + 1;
-                    Ruokalista uusiRuokalista = new Ruokalista(Id, ruokalistannimi, ruokalistankuvaus, numero);
+                    ravintola.Ruokalistat = haeRuokalistatRavintolanIdllä(numero);
+                    int suurinId = 0;
+                    foreach (Ruokalista ruokalista in ravintola.Ruokalistat)
+                    {
+                        if (ruokalista.Id > suurinId)
+                        {
+                            suurinId = ruokalista.Id;
+                        }
+                    }
+                    
+                    
+                    Ruokalista uusiRuokalista = new Ruokalista((suurinId+1), ruokalistannimi, ruokalistankuvaus, numero);
                     lisääRuokalistaTietokantaan(ravintola, uusiRuokalista);
                     Console.WriteLine("Ruokalista lisätty");
                     onkoOk = true;
@@ -350,7 +494,7 @@ namespace MenuDemoLibrary
                         ravintola.Ruokalistat = haeRuokalistatRavintolanIdllä(numero);
                         foreach (Ruokalista ruokalista in ravintola.Ruokalistat)
                         {
-                            Ruokalista.tulostaRuokalistanTiedot(ravintola, ruokalista.Id);
+                            Ruokalista.tulostaRuokalistanTiedot(ruokalista);
                         }
                         Console.WriteLine("Anna ruokalistan tunnus joka poistetaan");
                         int ruokalistannumero = int.Parse(Console.ReadLine());
@@ -391,7 +535,7 @@ namespace MenuDemoLibrary
                         ravintola.Ruokalistat = haeRuokalistatRavintolanIdllä(numero);
                         foreach (Ruokalista ruokalista in ravintola.Ruokalistat)
                         {
-                            Ruokalista.tulostaRuokalistanTiedot(ravintola, ruokalista.Id);
+                            Ruokalista.tulostaRuokalistanTiedot(ruokalista);
                         }
                         Console.WriteLine("Anna sen ruokalistan tunnus jonka kategoriaa haluat tarkastella: ");
                         int ruokalistantunnus = int.Parse(Console.ReadLine());
@@ -430,7 +574,7 @@ namespace MenuDemoLibrary
         public static void luoAnnosJaLisääSeDatamanageriin ()
         {
             var annos = Annos.luoAnnos();
-            dm.Annokset.Add(annos);
+            lisääLuotuAnnosTietokantaan(annos);
         }
         public static void lisääAnnosDatamanagerista ()
         {
@@ -453,7 +597,7 @@ namespace MenuDemoLibrary
                     List<Ruokalista> ruokalistat = haeRuokalistatRavintolanIdllä(numero);
                     foreach (Ruokalista ruokalista in ruokalistat)
                     {
-                        Ruokalista.tulostaRuokalistanTiedot(ravintola, ruokalista.Id);
+                        Ruokalista.tulostaRuokalistanTiedot(ruokalista);
                     }
                     Console.WriteLine("Anna sen ruokalistan tunnus jonka kategoriaan haluat lisätä: ");
                     int ruokalistantunnus = int.Parse(Console.ReadLine());
@@ -487,8 +631,8 @@ namespace MenuDemoLibrary
             List <Annos> annokset = haeKaikkiAnnokset();
             for (int i = 0; i < annokset.Count; i++)
             {
-                Console.WriteLine($"{annokset[i].Id}:"); 
-                Annos.tulostaAnnoksenTiedot(annokset[i]);
+                Console.WriteLine($"Id: {annokset[i].Id}, {annokset[i].Nimi}, {annokset[i].Kuvaus}, {annokset[i].Hinta} £"); 
+
             }
             Console.WriteLine("Valitse haluamasi annos:");
             int valinta = int.Parse(Console.ReadLine());
@@ -508,7 +652,7 @@ namespace MenuDemoLibrary
                     ravintola.Ruokalistat = haeRuokalistatRavintolanIdllä(numero);
                     foreach (Ruokalista ruokalista in ravintola.Ruokalistat)
                     {
-                        Ruokalista.tulostaRuokalistanTiedot(ravintola, ruokalista.Id);
+                        Ruokalista.tulostaRuokalistanTiedot(ruokalista);
                     }
                     Console.WriteLine("Anna sen ruokalistan tunnus jonka kategoriaan haluat lisätä: ");
                     int ruokalistantunnus = int.Parse(Console.ReadLine());
@@ -713,16 +857,18 @@ namespace MenuDemoLibrary
         public static void poistaAnnosDatamanagerista ()
         {
             Console.WriteLine("\nAnnokset:");
-            for (int i = 0; i < dm.Annokset.Count; i++)
+            List<Annos> annokset = haeKaikkiAnnokset();
+
+            foreach (Annos annos in annokset)
             {
-                Console.WriteLine($"\n{i + 1}: {dm.Annokset[i].Nimi}, {dm.Annokset[i].Hinta}, {dm.Annokset[i].Kuvaus}");
+                Annos.tulostaAnnoksenTiedot(annos);
             }
             int valinta;
             while (true)
             {
                 Console.WriteLine("Valitse annos jonka haluat poistaa");
                 valinta = int.Parse(Console.ReadLine());
-                if (valinta<1 || valinta>dm.Annokset.Count)
+                if (valinta<1 || valinta>annokset.Count)
                 {
                     Console.WriteLine("Numeroa ei ole listassa");
                 }   else
@@ -730,25 +876,13 @@ namespace MenuDemoLibrary
                     break;
                 }
             }
+
             dm.Annokset.RemoveAt(valinta - 1);
             odotaNäppäimenPainallusta();
 
         }
 
-        public static void muokkaaRavintolanRuokalistaa ()
-        {
-            Console.WriteLine("");
-            katseleListaaRavintoloista2();
-            Console.WriteLine("\nValitse ravintola jonka ruokalistaa haluat muokata:");
-            int valinta = int.Parse(Console.ReadLine());
-            Ravintola.tulostaRuokalistat(_ravintolat[valinta - 1]);
-            Console.WriteLine("Valitse ruokalista jota haluat muokata:");
-            int valinta2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Anna uusi nimi:");
-            string uusinimi = Console.ReadLine();
-            _ravintolat[valinta - 1].Ruokalistat[valinta2 - 1].Nimi = uusinimi;
-            odotaNäppäimenPainallusta();
-        }
+
         public static void muokkaaKategorianNimeä ()
         {
             Console.WriteLine("");

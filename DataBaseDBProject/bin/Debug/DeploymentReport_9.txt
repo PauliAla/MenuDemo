@@ -1,0 +1,28 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Ruokalistat]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Ruokalistat].[MenuID] is being dropped, data loss could occur.
+
+** User actions
+     Drop
+       [dbo].[FK_Kategoriat_ToTable] (Foreign Key)
+     Alter
+       [dbo].[Annokset] (Table)
+     Table rebuild
+       [dbo].[Ruokalistat] (Table)
+     Create
+       [dbo].[AnnosTyyppi] (Table)
+       [dbo].[FK_Kategoriat_ToTable] (Foreign Key)
+       [dbo].[FK_Annokset_Allergeenit] (Foreign Key)
+       [dbo].[FK_Annokset_AnnosTyyppi] (Foreign Key)
+       [dbo].[FK_Annokset_Kategoriat] (Foreign Key)
+
+** Supporting actions
+
+The column [dbo].[Ruokalistat].[MenuID] is being dropped, data loss could occur.
+

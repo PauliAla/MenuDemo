@@ -1,0 +1,10 @@
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\bin\Debug\DataBaseDBProject.dacpac
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\DataBaseDBProject.dll
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\DataBaseDBProject.pdb
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\bin\Debug\DataBaseDBProject.dll
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\bin\Debug\DataBaseDBProject.pdb
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\DataBaseDBProject.sqlprojAssemblyReference.cache
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\Model.xml
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\refactor.xml
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\postdeploy.sql
+C:\Users\Pauli\source\repos\MenuDemo\DataBaseDBProject\obj\Debug\predeploy.sql

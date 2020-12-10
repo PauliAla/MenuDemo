@@ -1,0 +1,9 @@
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\bin\Debug\netstandard2.0\MenuDemoLibrary.deps.json
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\bin\Debug\netstandard2.0\MenuDemoLibrary.dll
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\bin\Debug\netstandard2.0\MenuDemoLibrary.pdb
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.csprojAssemblyReference.cache
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.AssemblyInfoInputs.cache
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.AssemblyInfo.cs
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.dll
+C:\Users\Pauli\source\repos\MenuDemo\MenuDemoLibrary\obj\Debug\netstandard2.0\MenuDemoLibrary.pdb

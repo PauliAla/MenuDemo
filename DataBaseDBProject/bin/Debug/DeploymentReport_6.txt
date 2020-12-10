@@ -1,0 +1,24 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Kuvaus in table [dbo].[Kategoriat] is currently  NCHAR (10) NULL but is being changed to  VARCHAR
+         (400) NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type 
+         VARCHAR (400) NULL.
+       The type for column Nimi in table [dbo].[Kategoriat] is currently  NCHAR (10) NULL but is being changed to  VARCHAR (50)
+         NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR
+         (50) NULL.
+
+** User actions
+     Alter
+       [dbo].[Kategoriat] (Table)
+
+** Supporting actions
+
+The type for column Kuvaus in table [dbo].[Kategoriat] is currently  NCHAR (10) NULL but is being changed to  VARCHAR (400) NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (400) NULL.
+The type for column Nimi in table [dbo].[Kategoriat] is currently  NCHAR (10) NULL but is being changed to  VARCHAR (50) NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (50) NULL.
+

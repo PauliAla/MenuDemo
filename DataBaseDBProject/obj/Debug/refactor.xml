@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="de10f91c-ec8b-47be-b6a5-cf211b59259c" ChangeDateTime="12/01/2020 07:50:06" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[price]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Price" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8e04b83f-37ff-4467-94f4-3c89490056d4" ChangeDateTime="12/01/2020 07:50:10" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a9bc1b1-4727-4227-b0c7-d34d6f03d90f" ChangeDateTime="12/01/2020 07:50:15" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="245b5a26-c957-48f9-821c-66e5d8225591" ChangeDateTime="12/01/2020 07:50:45" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nimi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="260b5f68-ff2e-47f6-b476-e23f8ff5b771" ChangeDateTime="12/01/2020 07:50:52" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Kuvaus" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="24e52c37-880b-4e27-ada2-6a6dfc6b96af" ChangeDateTime="12/01/2020 07:50:56" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Dishes].[Price]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Dishes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Hinta" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="330ced21-7170-4ce7-973c-3b9a38a82b21" ChangeDateTime="12/01/2020 08:21:53" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Ruokalistat].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ruokalistat]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nimi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bbf74a2f-86b9-4f28-9fdc-dd0beeb32022" ChangeDateTime="12/01/2020 10:51:38" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Ruokalistat].[MenuID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ruokalistat]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MenuId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7bb3f2d0-84f0-4c9c-910e-e49fb74f7242" ChangeDateTime="12/03/2020 08:31:51" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[FK_Annokset_Ruokalista]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Annokset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Annokset_Kategoriat]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="690a09a8-5888-4dc0-a92c-5b9fdfc21631" ChangeDateTime="12/03/2020 08:46:52" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[FK_Annokset_Annostyyppi]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Annokset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Annokset_AnnosTyyppi]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ec4fb9a-f76d-42fc-8fdf-279f21b831ec" ChangeDateTime="12/03/2020 08:46:58" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Annokset].[AnnostyyppiId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Annokset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AnnosTyyppiId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f8ae778b-3ea0-41d2-a403-6e43d3d842f8" ChangeDateTime="12/03/2020 08:57:37" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Ravintolalista].[Kruunuhaka]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ravintolalista]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Nimi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1804945b-302f-4baf-b537-63983a845dc4" ChangeDateTime="12/03/2020 09:43:24" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[FK_Ruokalistat_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Ruokalistat]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Ruokalistat_Ravintolalista]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5d82a01c-e518-40cc-abcc-24469757513e" ChangeDateTime="12/03/2020 09:45:24" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[Kategoriat].[MenuId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Kategoriat]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RuokalistaId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="03129e44-f158-4671-a65e-32efb037ad1d" ChangeDateTime="12/08/2020 07:49:47" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[JuomatyyppiAnnokset].[Alkoholi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JuomatyyppiAnnokset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Alkoholiton" />
+  </Operation>
+</Operations>

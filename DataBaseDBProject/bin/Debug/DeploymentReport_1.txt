@@ -1,0 +1,24 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Dishes]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Hinta in table [dbo].[Dishes] is currently  DECIMAL (18) NULL but is being changed to  DECIMAL (18,
+         2) NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type 
+         DECIMAL (18, 2) NULL.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Dishes] (Default Constraint)
+     Table rebuild
+       [dbo].[Dishes] (Table)
+     Create
+       [dbo].[KategoriaAnnokset] (Table)
+
+** Supporting actions
+
+The type for column Hinta in table [dbo].[Dishes] is currently  DECIMAL (18) NULL but is being changed to  DECIMAL (18, 2) NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  DECIMAL (18, 2) NULL.
+
